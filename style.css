@@ -13,7 +13,7 @@
 }
 
 body {
-    background: url('C:/Users/caja9/Documents/Moj sajt/slike/data2.webp') no-repeat center center fixed;
+    background: url('data2.webp') no-repeat center center fixed;
     background-size: cover;
     color: var(--text-primary);
     line-height: 2;
