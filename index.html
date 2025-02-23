@@ -1,105 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Portfolio</title>
+    <meta name="description" content="Portfolio of Milan Zivanovic showcasing data analysis skills and past projects.">
+    <title>Portfolio - Milan Zivanovic</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <!-- Navigation -->
+    <!-- Navigation Section -->
     <nav class="nav">
         <div class="nav-container">
-            <a href="#" class="nav-logo">Milan Zivanovic</a>
+            <a href="#home" class="nav-logo">Milan Zivanovic</a>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
             <div class="nav-links">
                 <a href="#home">Home</a>
-                <a href="projects.html" target="_blank">Projects</a>    
+                <a href="projects.html" target="_blank">Projects</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
-    
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1 class="hero-title">
-                <span data-text class="changing-text"></span>
-            </h1>            
-            <p class="hero-subtitle">Self taught Data Analyst specializing in turning complex data into clear, actionable insights that drive business decisions.</p>
-            <a href="#projects" class="hero-cta">View My Projects</a>
+                <span data-text class="changing-text">Transforming data into insights</span>
+            </h1>
+            <p class="hero-subtitle">Self-taught Data Analyst delivering actionable insights.</p>
+            <a href="projects.html" class="hero-cta">View My Projects</a>
         </div>
     </section>
-    <!-- Projects Section -->
-<section class="projects" id="projects">
-    <div class="container">
-        <div class="section-header">
-            <h2>Featured Projects</h2>
-            <p>Explore my data analysis work</p>
-        </div>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-content">
-                    <span class="project-category">Data Analysis</span>
-                    <h3>Project Title</h3>
-                    <p>Description of the project and its impact on business decisions.</p>
-                    <a href="#" class="project-link">View Project <span>→</span></a>
-                </div>
-            </div>
-            <!-- More project cards -->
-        </div>
-    </div>
-</section>
 
-<!-- About Section -->
-<section class="about" id="about">
-    <div class="container">
-        <div class="about-content">
-            <div class="about-text">
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
                 <h2>About Me</h2>
-                <p class="lead">Data analyst with expertise in transforming complex datasets into actionable insights.</p>
-                <p>Detailed description of your background, skills, and approach to data analysis.</p>
+                <p class="lead">I’m a data analyst transforming complex information into actionable insights.</p>
+                <p>I specialize in identifying trends, creating data-driven strategies, and optimizing business outcomes.</p>
                 <div class="stats">
                     <div class="stat-item">
                         <span class="stat-number">5+</span>
-                        <span class="stat-label">Years Experience</span>
+                        <span class="stat-label">Years of Experience</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">50+</span>
-                        <span class="stat-label">Projects Completed</span>
+                        <span class="stat-label">Projects Delivered</span>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Contact Section -->
-<section class="contact" id="contact">
-    <div class="container">
-        <div class="contact-content">
-            <div class="contact-text">
-                <h2>Let's Connect</h2>
-                <p>Interested in working together? Let's discuss your project.</p>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Let us Connect</h2>
+                <p>If you'd like to collaborate or discuss a project, let us make it happen!</p>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
             </div>
-            <form class="contact-form">
-                <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="Your Message" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
         </div>
-    </div>
-</section>
+    </section>
 
     <script src="script.js"></script>
 </body>
+
 </html>
