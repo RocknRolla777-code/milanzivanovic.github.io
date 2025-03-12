@@ -55,7 +55,7 @@ fig_trend.add_trace(go.Scatter(
 # Stilizacija
 fig_trend.update_layout(
     title=dict(
-        text="Trend broja prijavljenih i osuđenih maloletnika (2019-2023)",
+        text="Trend broja prijavljenih i osuđenih maloletnika (2019-2023) u Republici Srbiji",
         x=0.5, font=dict(size=22)
     ),
     xaxis=dict(title="Godina", tickmode="array", tickvals=df["Godina"], tickfont=dict(size=14)),
@@ -83,7 +83,7 @@ fig_bar.add_trace(go.Bar(
 # Stil
 fig_bar.update_layout(
     title=dict(
-        text="Poređenje prijavljenih i osuđenih maloletnika (2019-2023)",
+        text="Poređenje prijavljenih i osuđenih maloletnika (2019-2023) u Republici Srbiji",
         x=0.5, font=dict(size=22)
     ),
     xaxis=dict(title="Godina", tickmode="array", tickvals=df["Godina"], tickfont=dict(size=14)),
@@ -106,7 +106,7 @@ df_polu = df_polu.melt(id_vars="Pol", var_name="Kategorija", value_name="Broj")
 
 fig_pie = px.pie(
     df_polu, names="Pol", values="Broj", color="Pol",
-    title="Udeo muških i ženskih maloljetnika (Prijavljeni i Osuđeni)",
+    title="Udeo muških i ženskih maloletnika (Prijavljeni i Osuđeni)",
     color_discrete_map={"Muški": "royalblue", "Ženski": "pink"}
 )
 
@@ -116,7 +116,7 @@ fig_pie.update_traces(
 )
 
 fig_pie.update_layout(
-    title=dict(text="Raspodela prijavljenih i osuđenih po polu", x=0.5, font=dict(size=22)),
+    title=dict(text="Raspodela prijavljenih i osuđenih po polu (Republika Srbija)", x=0.5, font=dict(size=22)),
 )
 
 fig_pie.show()
