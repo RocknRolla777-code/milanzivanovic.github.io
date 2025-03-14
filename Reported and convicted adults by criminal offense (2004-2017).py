@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 
 # --- Streamlit Page Configuration ---
 st.set_page_config(
-    page_title="Crime Analysis in Serbia(2004–2017)",
+    page_title="Crime Analysis in Serbia (2004–2017)",
     page_icon="📊",
     layout="wide"
 )
@@ -82,7 +82,7 @@ chart_selection = st.sidebar.radio(
 
 # --- Visualization Selection ---
 if chart_selection == "Yearly Crime Trends":
-    st.subheader("📈 Yearly Crime Trends in Serbia (2004–2017)")
+    st.subheader("📈 Yearly Crime Trends (2004–2017)")
     
     # Line chart: Yearly Trends
     fig_line = go.Figure()
@@ -109,7 +109,7 @@ if chart_selection == "Yearly Crime Trends":
 
     # Customize layout
     fig_line.update_layout(
-        title="Yearly Crime Trends in Serbia(2004–2017)",
+        title="Yearly Crime Trends in Serbia (2004–2017)",
         xaxis_title="Year",
         yaxis_title="Number of Crimes",
         legend_title="Crime Type",
