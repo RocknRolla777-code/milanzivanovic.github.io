@@ -81,7 +81,7 @@ chart_selection = st.sidebar.radio(
 )
 
 # --- Visualization Selection ---
-if chart_selection == "Yearly Crime Trends":
+if chart_selection == "Yearly Crime Trends in Serbia (2004-2017)":
     st.subheader("📈 Yearly Crime Trends (2004–2017)")
     
     # Line chart: Yearly Trends
@@ -109,7 +109,7 @@ if chart_selection == "Yearly Crime Trends":
 
     # Customize layout
     fig_line.update_layout(
-        title="Yearly Crime Trends (2004–2017) with High-Contrast Colors",
+        title="Yearly Crime Trends (2004–2017)",
         xaxis_title="Year",
         yaxis_title="Number of Crimes",
         legend_title="Crime Type",
@@ -134,7 +134,7 @@ elif chart_selection == "Crime Shares (Stacked Bar Chart)":
 
     # Customize layout
     fig_bar.update_layout(
-        title="Contribution of Crime Categories (2004–2017) with High-Contrast Colors",
+        title="Contribution of Crime Categories (2004–2017)",
         xaxis_title="Year",
         yaxis_title="Percentage Contribution (%)",
         barmode="stack",  # Stacked bar chart
