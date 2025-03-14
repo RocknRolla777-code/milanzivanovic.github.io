@@ -81,7 +81,7 @@ chart_selection = st.sidebar.radio(
 )
 
 # --- Visualization Selection ---
-if chart_selection == "Yearly Crime Trends in Serbia (2004-2017)":
+if chart_selection == "Yearly Crime Trends":
     st.subheader("📈 Yearly Crime Trends (2004–2017)")
     
     # Line chart: Yearly Trends
@@ -169,4 +169,4 @@ elif chart_selection == "Year-to-Year Change (Heatmap)":
 
 
 # Footer
-st.sidebar.info("Source: Reported and convicted adults, by criminal offense")
+st.sidebar.info("Source: Republic Institute of Statistics in Serbia")
