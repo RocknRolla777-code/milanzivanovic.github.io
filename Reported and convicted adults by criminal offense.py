@@ -137,4 +137,4 @@ elif chart_selection == "Year-to-Year Change (Heatmap)":
 
 
 # Footer
-st.sidebar.info("Source: Serbian Crime Data (2013–2017) | Created with Streamlit 🚀")
+st.sidebar.info("Source: Republic Institute of Statistics of Serbia")
