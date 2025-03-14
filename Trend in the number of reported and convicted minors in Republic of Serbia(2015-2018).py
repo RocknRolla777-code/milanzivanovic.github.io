@@ -1,123 +1,141 @@
+import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 
-# Unos podataka
+# --- Streamlit Page Configuration ---
+st.set_page_config(
+    page_title="Juvenile Crime Trends in Serbia (2015–2018)",
+    page_icon="📊",
+    layout="wide"
+)
+
+# --- Data Input ---
 data = {
-    "Godina": [2015, 2016, 2017, 2018],
-    "Prijavljeni_Ukupno": [3355, 3643, 3465, 2744],
-    "Prijavljeni_Muski": [3040, 3281, 3114, 2448],
-    "Prijavljeni_Zenski": [315, 362, 351, 296],
-    "Osudjeni_Ukupno": [1926, 2032, 1633, 1548],
-    "Osudjeni_Muski": [1784, 1880, 1491, 1422],
-    "Osudjeni_Zenski": [142, 152, 142, 126],
+    "Year": [2015, 2016, 2017, 2018],
+    "Reported_Total": [3355, 3643, 3465, 2744],
+    "Reported_Male": [3040, 3281, 3114, 2448],
+    "Reported_Female": [315, 362, 351, 296],
+    "Convicted_Total": [1926, 2032, 1633, 1548],
+    "Convicted_Male": [1784, 1880, 1491, 1422],
+    "Convicted_Female": [142, 152, 142, 126],
 }
 
-# Kreiranje DataFrame-a
 df = pd.DataFrame(data)
 
-# --- 1. Grafikon trenda ---
-fig_trend = go.Figure()
-
-# Prijavljeni
-fig_trend.add_trace(go.Scatter(
-    x=df["Godina"], y=df["Prijavljeni_Ukupno"], mode="lines+markers",
-    name="Prijavljeni (Ukupno)", line=dict(color="royalblue", width=3),
-    marker=dict(size=8, symbol="circle")
-))
-fig_trend.add_trace(go.Scatter(
-    x=df["Godina"], y=df["Prijavljeni_Muski"], mode="lines+markers",
-    name="Prijavljeni (Muški)", line=dict(color="dodgerblue", dash="dash"),
-    marker=dict(size=8, symbol="triangle-up")
-))
-fig_trend.add_trace(go.Scatter(
-    x=df["Godina"], y=df["Prijavljeni_Zenski"], mode="lines+markers",
-    name="Prijavljeni (Ženski)", line=dict(color="blueviolet", dash="dot"),
-    marker=dict(size=8, symbol="x")
-))
-
-# Osuđeni
-fig_trend.add_trace(go.Scatter(
-    x=df["Godina"], y=df["Osudjeni_Ukupno"], mode="lines+markers",
-    name="Osuđeni (Ukupno)", line=dict(color="firebrick", width=3),
-    marker=dict(size=8, symbol="circle")
-))
-fig_trend.add_trace(go.Scatter(
-    x=df["Godina"], y=df["Osudjeni_Muski"], mode="lines+markers",
-    name="Osuđeni (Muški)", line=dict(color="orangered", dash="dash"),
-    marker=dict(size=8, symbol="triangle-down")
-))
-fig_trend.add_trace(go.Scatter(
-    x=df["Godina"], y=df["Osudjeni_Zenski"], mode="lines+markers",
-    name="Osuđeni (Ženski)", line=dict(color="darkred", dash="dot"),
-    marker=dict(size=8, symbol="x")
-))
-
-# Stilizacija
-fig_trend.update_layout(
-    title=dict(
-        text="Trend broja prijavljenih i osuđenih maloletnika u Republici Srbiji (2015-2018)",
-        x=0.5, font=dict(size=22)
-    ),
-    xaxis=dict(title="Godina", tickmode="array", tickvals=df["Godina"], tickfont=dict(size=14)),
-    yaxis=dict(title="Broj lica", tickfont=dict(size=14)),
-    legend=dict(title="Kategorija", font=dict(size=14), orientation="h", y=-0.2),
-    template="plotly_white",
-    margin=dict(l=40, r=40, t=80, b=80)
+# --- Sidebar Navigation ---
+st.sidebar.title("Visualizations")
+chart_selection = st.sidebar.radio(
+    "Choose a chart to display:",
+    ["Trend of Reported and Convicted", "Comparison of Reported and Convicted", "Gender Distribution"]
 )
 
-fig_trend.show()
+# --- Chart: Trend of Reported and Convicted ---
+if chart_selection == "Trend of Reported and Convicted":
+    st.subheader("📈 Trend of Reported and Convicted Juveniles in Serbia (2015–2018)")
+    fig_trend = go.Figure()
 
-# --- 2. Uporedni bar grafikon ---
-fig_bar = go.Figure()
+    # Reported
+    fig_trend.add_trace(go.Scatter(
+        x=df["Year"], y=df["Reported_Total"], mode="lines+markers",
+        name="Reported (Total)", line=dict(color="royalblue", width=3),
+        marker=dict(size=8, symbol="circle")
+    ))
+    fig_trend.add_trace(go.Scatter(
+        x=df["Year"], y=df["Reported_Male"], mode="lines+markers",
+        name="Reported (Male)", line=dict(color="dodgerblue", dash="dash"),
+        marker=dict(size=8, symbol="triangle-up")
+    ))
+    fig_trend.add_trace(go.Scatter(
+        x=df["Year"], y=df["Reported_Female"], mode="lines+markers",
+        name="Reported (Female)", line=dict(color="blueviolet", dash="dot"),
+        marker=dict(size=8, symbol="x")
+    ))
 
-fig_bar.add_trace(go.Bar(
-    x=df["Godina"], y=df["Prijavljeni_Ukupno"],
-    name="Prijavljeni (Ukupno)", marker_color="royalblue"
-))
+    # Convicted
+    fig_trend.add_trace(go.Scatter(
+        x=df["Year"], y=df["Convicted_Total"], mode="lines+markers",
+        name="Convicted (Total)", line=dict(color="firebrick", width=3),
+        marker=dict(size=8, symbol="circle")
+    ))
+    fig_trend.add_trace(go.Scatter(
+        x=df["Year"], y=df["Convicted_Male"], mode="lines+markers",
+        name="Convicted (Male)", line=dict(color="orangered", dash="dash"),
+        marker=dict(size=8, symbol="triangle-down")
+    ))
+    fig_trend.add_trace(go.Scatter(
+        x=df["Year"], y=df["Convicted_Female"], mode="lines+markers",
+        name="Convicted (Female)", line=dict(color="darkred", dash="dot"),
+        marker=dict(size=8, symbol="x")
+    ))
 
-fig_bar.add_trace(go.Bar(
-    x=df["Godina"], y=df["Osudjeni_Ukupno"],
-    name="Osuđeni (Ukupno)", marker_color="firebrick"
-))
+    fig_trend.update_layout(
+        title=dict(
+            text="Trend of Reported and Convicted Juveniles in Serbia (2015–2018)",
+            x=0.5, font=dict(size=22)
+        ),
+        xaxis=dict(title="Year", tickmode="array", tickvals=df["Year"], tickfont=dict(size=14)),
+        yaxis=dict(title="Number of Individuals", tickfont=dict(size=14)),
+        legend=dict(title="Category", font=dict(size=14), orientation="h", y=-0.2),
+        template="plotly_white",
+        margin=dict(l=40, r=40, t=80, b=80),
+    )
+    st.plotly_chart(fig_trend, use_container_width=True)
 
-# Stil
-fig_bar.update_layout(
-    title=dict(
-        text="Poređenje prijavljenih i osuđenih maloletnika u Republici Srbiji (2015-2018)",
-        x=0.5, font=dict(size=22)
-    ),
-    xaxis=dict(title="Godina", tickmode="array", tickvals=df["Godina"], tickfont=dict(size=14)),
-    yaxis=dict(title="Broj lica", tickfont=dict(size=14)),
-    legend=dict(title="Kategorija", font=dict(size=14)),
-    template="plotly_white",
-    margin=dict(l=40, r=40, t=80, b=80),
-    barmode="group"
-)
+# --- Chart: Comparison Bar Chart ---
+elif chart_selection == "Comparison of Reported and Convicted":
+    st.subheader("📊 Comparison of Reported and Convicted Juveniles (2015–2018)")
+    fig_bar = go.Figure()
 
-fig_bar.show()
+    fig_bar.add_trace(go.Bar(
+        x=df["Year"], y=df["Reported_Total"],
+        name="Reported (Total)", marker_color="royalblue"
+    ))
+    fig_bar.add_trace(go.Bar(
+        x=df["Year"], y=df["Convicted_Total"],
+        name="Convicted (Total)", marker_color="firebrick"
+    ))
 
-# --- 3. Udeo po polu: Pie Chart ---
-df_polu = pd.DataFrame({
-    "Pol": ["Muški", "Ženski"],
-    "Prijavljeni": [df["Prijavljeni_Muski"].sum(), df["Prijavljeni_Zenski"].sum()],
-    "Osuđeni": [df["Osudjeni_Muski"].sum(), df["Osudjeni_Zenski"].sum()],
-})
-df_polu = df_polu.melt(id_vars="Pol", var_name="Kategorija", value_name="Broj")
+    fig_bar.update_layout(
+        title=dict(
+            text="Comparison of Reported and Convicted Juveniles in Serbia (2015–2018)",
+            x=0.5, font=dict(size=22)
+        ),
+        xaxis=dict(title="Year", tickmode="array", tickvals=df["Year"], tickfont=dict(size=14)),
+        yaxis=dict(title="Number of Individuals", tickfont=dict(size=14)),
+        legend=dict(title="Category", font=dict(size=14)),
+        template="plotly_white",
+        margin=dict(l=40, r=40, t=80, b=80),
+        barmode="group"
+    )
+    st.plotly_chart(fig_bar, use_container_width=True)
 
-fig_pie = px.pie(
-    df_polu, names="Pol", values="Broj", color="Pol",
-    title="Udeo muških i ženskih maloletnika (Prijavljeni i Osuđeni)",
-    color_discrete_map={"Muški": "royalblue", "Ženski": "pink"}
-)
+# --- Chart: Gender Distribution Pie Chart ---
+elif chart_selection == "Gender Distribution":
+    st.subheader("🟣 Gender Distribution of Reported and Convicted Juveniles (2015–2018)")
+    df_gender = pd.DataFrame({
+        "Gender": ["Male", "Female"],
+        "Reported": [df["Reported_Male"].sum(), df["Reported_Female"].sum()],
+        "Convicted": [df["Convicted_Male"].sum(), df["Convicted_Female"].sum()],
+    })
 
-fig_pie.update_traces(
-    hoverinfo="label+percent+value", textinfo="percent+label",
-    marker=dict(line=dict(color="white", width=2))
-)
+    df_gender = df_gender.melt(id_vars="Gender", var_name="Category", value_name="Count")
 
-fig_pie.update_layout(
-    title=dict(text="Raspodela prijavljenih i osuđenih po polu u Republici Srbiji (2015-2018)", x=0.5, font=dict(size=22)),
-)
+    fig_pie = px.pie(
+        df_gender, names="Gender", values="Count", color="Gender",
+        title="Gender Distribution of Reported and Convicted Juveniles",
+        color_discrete_map={"Male": "royalblue", "Female": "pink"}
+    )
 
-fig_pie.show()
+    fig_pie.update_traces(
+        hoverinfo="label+percent+value", textinfo="percent+label",
+        marker=dict(line=dict(color="white", width=2))
+    )
+
+    fig_pie.update_layout(
+        title=dict(text="Gender Distribution of Reported and Convicted Juveniles in Serbia (2015–2018)", x=0.5, font=dict(size=22)),
+    )
+    st.plotly_chart(fig_pie, use_container_width=True)
+
+# --- Footer ---
+st.sidebar.info("Source: Republic Institute of Statistics in Serbia")
