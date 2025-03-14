@@ -128,4 +128,4 @@ elif chart_selection == "Bar Chart":
     st.plotly_chart(fig_bar, use_container_width=True)
 
 # Footer information in sidebar
-st.sidebar.info("📆 Data source: Tourism data for 2023.")
+st.sidebar.info("📆 Data source: Republic Institute of Statistics of Serbia.")
